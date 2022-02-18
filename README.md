@@ -10,11 +10,17 @@ Include logo/demo screenshot etc.
 - Mencari data berdasarkan masukkan pengguna.
 - Filter data berdasarkan bulan lahir.
 - Dapat mengurutkan data secara ascending atau descending.
+
 ## Kontribusi
 1. Fork repositori ini
 2. Clone ke folder komputer anda lalu ketikkan di terminal npm install untuk menginstall semua dependensi
 3. Tambahkan kode anda
 4. Buat pull request
+
+## Lisensi
+[Klik disini](./LICENCE.md) untuk lebih detail
+
+MIT © [Ersan Karimi](github.com/ersankarimi)
 
 
 
