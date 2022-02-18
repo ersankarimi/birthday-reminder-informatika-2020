@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* font family */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&family=Roboto+Condensed:wght@700&display=swap');
+
+#root {
+	overflow-x: hidden;
+	background: #303030 url('./img/gloss-circle.png') no-repeat center center
+		fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	object-fit: cover;
+}
+
+input[type='radio']:checked + label span {
+	background-image: url('./img/tick.png');
+}
