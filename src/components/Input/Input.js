@@ -8,7 +8,7 @@ const Input = () => {
 	} = useMyContext()
 
 	const handleChange = (e) => {
-		updateDataValue(e.target.id, e.target.value)
+		updateDataValue('name', e.target.value)
 	}
 
 	return (
