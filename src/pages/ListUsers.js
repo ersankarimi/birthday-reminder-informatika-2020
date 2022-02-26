@@ -28,11 +28,7 @@ const ListUsers = () => {
 		}
 	}, [debouncedSearchTerm])
 
-	return result.length !== 0 ? (
-		result.map((user) => <List {...user} key={user.id} />)
-	) : (
-		<Error />
-	)
+	return result && result.map((user) => <List {...user} key={user.id} />)
 }
 
 export { ListUsers }
