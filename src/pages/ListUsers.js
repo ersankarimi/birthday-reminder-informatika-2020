@@ -1,15 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useMyContext } from '../hooks/useMyContext'
 import { List } from './../components/List/List'
 import { Error } from './../components/Error/Error'
+import { useDebounce } from '../hooks/useDebounce'
+import { findUsersByInput } from '../utils/findUser'
 
 const ListUsers = () => {
-	const { tempData, updateDataValue } = useMyContext()
+	const {
+		data,
+		filterData: { input },
+	} = useMyContext()
+	const [result, setResult] = useState([])
 
-	return tempData.length !== 0 ? (
-		tempData.map((user) => {
-			return <List {...user} key={user.id} />
-		})
+	// search name by user input
+	const [isSearching, setIsSearching] = useState(false)
+	const debouncedSearchTerm = useDebounce(input, 500)
+
+	// for searh name by user input
+	useEffect(() => {
+		if (input) {
+			setIsSearching(true)
+			setResult(findUsersByInput(input, data))
+			setIsSearching(false)
+		} else {
+			setResult(data)
+			setIsSearching(false)
+		}
+	}, [debouncedSearchTerm])
+
+	return result.length !== 0 ? (
+		result.map((user) => <List {...user} key={user.id} />)
 	) : (
 		<Error />
 	)
