@@ -1,29 +1,39 @@
 import React, { useRef, useEffect } from 'react'
+import { useMyContext } from '../../hooks/useMyContext'
 
-const Dropdown = (props) => {
+const Dropdown = () => {
 	const dropdownItem = useRef('')
 	const dropdownSvg = useRef('')
 	const dropdownPath = useRef('')
+	const {
+		filterData: { month },
+		updateDataValue,
+	} = useMyContext()
 
+	console.log(month)
 	const handleClick = () => {
 		dropdownItem.current.classList.toggle('hidden')
 	}
 
 	const handleClickDropdownItem = (e) => {
-		props.handleClickDropdown(e.target.id)
+		updateDataValue('month', e.target.id)
+	}
+
+	const handleWindowClick = (e) => {
+		if (
+			!dropdownItem.current.classList.contains('hidden') &&
+			e.target.parentElement !== dropdownItem.current.parentElement &&
+			e.target !== dropdownSvg.current &&
+			e.target !== dropdownPath.current
+		) {
+			dropdownItem.current.classList.toggle('hidden')
+		}
 	}
 
 	useEffect(() => {
-		window.addEventListener('click', (e) => {
-			if (
-				!dropdownItem.current.classList.contains('hidden') &&
-				e.target.parentElement !== dropdownItem.current.parentElement &&
-				e.target !== dropdownSvg.current &&
-				e.target !== dropdownPath.current
-			) {
-				dropdownItem.current.classList.toggle('hidden')
-			}
-		})
+		window.addEventListener('click', handleWindowClick)
+
+		return () => window.removeEventListener('click', handleWindowClick)
 	})
 
 	return (
