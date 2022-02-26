@@ -6,7 +6,7 @@
 
 #root {
 	overflow-x: hidden;
-	background: #303030 url('./img/gloss-circle.png') no-repeat center center
+	background: #303030 url('./assets/img/gloss-circle.png') no-repeat center center
 		fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -16,5 +16,5 @@
 }
 
 input[type='radio']:checked + label span {
-	background-image: url('./img/tick.png');
+	background-image: url('./assets/img/tick.png');
 }
