@@ -401,7 +401,7 @@ export const data = [
 	},
 	{
 		id: 'sb6UCjP5QE',
-		name: 'Mirza hafizh fadillah',
+		name: 'Mirza Hafizh Fadillah',
 		nim: '11201056',
 		gender: 'Laki - Laki',
 		date: '2002-09-12',
