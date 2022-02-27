@@ -17,11 +17,6 @@ Include logo/demo screenshot etc.
 3. Tambahkan kode anda
 4. Buat pull request
 
-## Lisensi
-[Klik disini](https://github.com/ersankarimi/birthday-reminder-informatika-2020/blob/master/LICENSE.md) untuk lebih detail
-
-MIT © [Ersan Karimi](github.com/ersankarimi)
-
 
 
 
