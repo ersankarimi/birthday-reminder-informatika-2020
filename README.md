@@ -33,7 +33,7 @@ Sebelum insalasi, pastikan anda sudah menginstal tools berikut :
 2. Clone ke folder komputer anda 
 
 ```bash
-    git clone https://github.com/<your-github-username>/birthday-reminder-informatika-2020.git
+git clone https://github.com/<your-github-username>/birthday-reminder-informatika-2020.git
 ```
 3. Install semua dependensi
 
