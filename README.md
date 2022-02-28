@@ -4,7 +4,7 @@ Projek ini menampilkan tanggal lahir dan umur dari seluruh mahasiswa/i Informati
 ## Motivasi
 Mempermudah mahasiswa/i Informatika 2020 untuk mengetahui siapa dan kapan teman nya berulang tahun.
 ## Screenshots
-Include logo/demo screenshot etc.
+![Screenshoot Birthday Reminder Informatika](./src/assets/screenshoot/screenshoot-1.png)
 
 ## Fitur - Fitur
 - Mencari data berdasarkan masukkan pengguna.
