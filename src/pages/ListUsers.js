@@ -4,26 +4,31 @@ import { List } from './../components/List/List'
 import { Error } from './../components/Error/Error'
 import { useDebounce } from '../hooks/useDebounce'
 import { findUsersByInput, findUserByBirthdayMonth } from '../utils/findUser'
+import { sortUserData } from '../utils/sortUser'
 
 const ListUsers = () => {
 	const {
 		data,
-		filterData: { input, month },
+		filterData: { input, month, sort },
 		updateDataValue,
 	} = useMyContext()
 	const [result, setResult] = useState([])
+	const [resultSort, setResultSort] = useState([])
 
-	// search name by user input
+	// *  search name by user input
 	const [isSearching, setIsSearching] = useState(false)
 	const debouncedSearchNameByInput = useDebounce(input, 500)
 
-	// search name by month
+	// *  search name by month
 	const debouncedSearchNameByMonth = useDebounce(month, 150)
 
-	// for searh name by user input
+	// * sort user data
+	const debouncedSortUserData = useDebounce(sort, 200)
+
+	// * for search name by user input
 	useEffect(() => {
+		setIsSearching(true)
 		if (input) {
-			setIsSearching(true)
 			setResult(findUsersByInput(input, data))
 			updateDataValue('month', '')
 			setIsSearching(false)
@@ -33,16 +38,37 @@ const ListUsers = () => {
 		}
 	}, [debouncedSearchNameByInput])
 
-	// for searh name by month
+	// * for search name by month
 	useEffect(() => {
+		setIsSearching(true)
 		if (month) {
-			setIsSearching(true)
 			setResult(findUserByBirthdayMonth(month, data))
 			setIsSearching(false)
 		}
 	}, [debouncedSearchNameByMonth])
 
-	return result && result.map((user) => <List {...user} key={user.id} />)
+	// * for sort name by ascending, descending ,and none
+	useEffect(() => {
+		setIsSearching(true)
+		if (sort !== 'none') {
+			// setResult(sortUserData(result, sort))
+			setResultSort(sortUserData([...result], sort))
+			setIsSearching(false)
+		} else {
+			setResultSort([])
+			setIsSearching(false)
+		}
+	}, [debouncedSortUserData])
+
+	const renderList = () => {
+		if (resultSort.length !== 0) {
+			return resultSort.map((user) => <List {...user} key={user.id} />)
+		}
+		// default return
+		return result && result.map((user) => <List {...user} key={user.id} />)
+	}
+
+	return renderList()
 }
 
 export { ListUsers }
