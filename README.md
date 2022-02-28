@@ -1,5 +1,5 @@
 ## Birthday Reminder Informatika 2020
-Projek ini menampilkan tanggal lahir dan umur dari seluruh mahasiswa/i Informatika 2020. Projek ini di-bootstrap dengan [Create React App](https://github.com/facebook/create-react-app) dan menggunakan [Tailwind CSS](https://tailwindcss.com/).
+Projek ini menampilkan tanggal lahir dan umur dari seluruh mahasiswa/i Informatika 2020. Projek ini di-bootstrap dengan [Create React App](https://github.com/facebook/create-react-app) dan menggunakan [Tailwind CSS](https://tailwindcss.com/). Link website https://birthdayreminderinformatika2020.netlify.app/
 
 ## Motivasi
 Mempermudah mahasiswa/i Informatika 2020 untuk mengetahui siapa dan kapan teman nya berulang tahun.
