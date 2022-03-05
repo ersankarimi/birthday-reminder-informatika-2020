@@ -1,5 +1,4 @@
 import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
 import { ContextProvider } from '../hooks/context'
 import { Header } from './../components/Header/Header'
 import { Form } from './Form'
