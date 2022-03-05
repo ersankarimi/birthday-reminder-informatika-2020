@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useMyContext } from '../../hooks/useMyContext'
+import { useSearchParams } from 'react-router-dom'
 
 const Input = () => {
 	const {
@@ -7,9 +8,28 @@ const Input = () => {
 		updateDataValue,
 	} = useMyContext()
 
+	const [searchParams, setSearchParams] = useSearchParams()
+
 	const handleChange = (e) => {
-		updateDataValue('name', e.target.value)
+		const nama = e.target.value
+		if (!nama) {
+			setSearchParams({})
+			updateDataValue('name', nama)
+			return
+		}
+
+		setSearchParams({ nama })
+		updateDataValue('name', nama)
+		console.log(searchParams.get('nama'))
 	}
+
+	useEffect(() => {
+		const nama = searchParams.get('nama')
+		if (nama) {
+			setSearchParams({ nama })
+			updateDataValue('name', nama)
+		}
+	}, [searchParams])
 
 	return (
 		<>
@@ -26,7 +46,7 @@ const Input = () => {
 				placeholder='Masukkan nama teman'
 				className='w-52 md:w-96 text-white bg-input-text placeholder:text-sm placeholder:text-placeholder-input backdrop-blur-primary rounded-lg'
 				onChange={handleChange}
-				value={input}
+				value={searchParams.get('nama') || ''}
 			/>
 		</>
 	)
