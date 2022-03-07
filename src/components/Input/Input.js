@@ -4,32 +4,36 @@ import { useSearchParams } from 'react-router-dom'
 
 const Input = () => {
 	const {
-		filterData: { input },
+		filterData: { input, month },
 		updateDataValue,
 	} = useMyContext()
 
-	const [searchParams, setSearchParams] = useSearchParams()
+	const [searchName, setSearchName] = useSearchParams()
 
 	const handleChange = (e) => {
 		const nama = e.target.value
+
+		updateDataValue('sort', 'none')
+
 		if (!nama) {
-			setSearchParams({})
 			updateDataValue('name', nama)
+			setSearchName({})
 			return
 		}
 
-		setSearchParams({ nama })
+		setSearchName({ nama })
 		updateDataValue('name', nama)
-		console.log(searchParams.get('nama'))
 	}
 
 	useEffect(() => {
-		const nama = searchParams.get('nama')
+		const nama = searchName.get('nama')
 		if (nama) {
-			setSearchParams({ nama })
+			setSearchName({ nama })
 			updateDataValue('name', nama)
+			return
 		}
-	}, [searchParams])
+		updateDataValue('month', '-1')
+	}, [searchName])
 
 	return (
 		<>
@@ -46,7 +50,7 @@ const Input = () => {
 				placeholder='Masukkan nama teman'
 				className='w-52 md:w-96 text-white bg-input-text placeholder:text-sm placeholder:text-placeholder-input backdrop-blur-primary rounded-lg'
 				onChange={handleChange}
-				value={searchParams.get('nama') || ''}
+				value={searchName.get('nama') || ''}
 			/>
 		</>
 	)
