@@ -193,7 +193,7 @@ export const data = [
 	},
 	{
 		id: 'Ipqg7OlqSb',
-		name: 'Ervalsa Dwi nanda',
+		name: 'Ervalsa Dwi Nanda',
 		nim: '11201028',
 		gender: 'Laki - Laki',
 		date: '2002-12-03',
@@ -241,7 +241,7 @@ export const data = [
 	},
 	{
 		id: 'UPcqOVjcv8',
-		name: 'Gerson wissaluno',
+		name: 'Gerson Wissaluno',
 		nim: '11201034',
 		gender: 'Laki-laki',
 		date: '2001-12-23',
@@ -340,7 +340,7 @@ export const data = [
 		name: 'Jullivan Yusni',
 		nim: '11201047',
 		gender: 'Laki-laki',
-		date: '2002-09-26',
+		date: '2002-07-01',
 		url: 'https://lh5.googleusercontent.com/nbDo5EXUElQWoxWEmOk2XP7UFFDbh4DLwNGvxebCVLSFN6GDOha0hMmqDjGnLQWNXBVI6mNej8HaFIA25qj2=w1920-h892',
 	},
 	{
