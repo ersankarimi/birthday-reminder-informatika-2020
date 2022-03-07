@@ -17,13 +17,13 @@ const ListUsers = () => {
 
 	// *  search name by user input
 	const [isSearching, setIsSearching] = useState(false)
-	const debouncedSearchNameByInput = useDebounce(input, 500)
+	const debouncedSearchNameByInput = useDebounce(input, 50)
 
 	// *  search name by month
-	const debouncedSearchNameByMonth = useDebounce(month, 150)
+	const debouncedSearchNameByMonth = useDebounce(month, 50)
 
 	// * sort user data
-	const debouncedSortUserData = useDebounce(sort, 200)
+	const debouncedSortUserData = useDebounce(sort, 50)
 
 	// * for search name by user input
 	useEffect(() => {
@@ -41,10 +41,8 @@ const ListUsers = () => {
 	// * for search name by month
 	useEffect(() => {
 		setIsSearching(true)
-		if (month) {
-			setResult(findUserByBirthdayMonth(month, data))
-			setIsSearching(false)
-		}
+		setResult(findUserByBirthdayMonth(month, data))
+		setIsSearching(false)
 	}, [debouncedSearchNameByMonth])
 
 	// * for sort name by ascending, descending ,and none
