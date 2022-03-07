@@ -1,22 +1,40 @@
 import React, { useRef, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { useDebounce } from '../../hooks/useDebounce'
 import { useMyContext } from '../../hooks/useMyContext'
+import { fullMonth } from '../../utils/convertBirthDate'
 
 const Dropdown = () => {
 	const dropdownItem = useRef('')
 	const dropdownSvg = useRef('')
 	const dropdownPath = useRef('')
 	const {
-		filterData: { month },
+		filterData: { month, input, sort },
 		updateDataValue,
 	} = useMyContext()
 
-	console.log(month)
+	const [searchBulan, setSearchBulan] = useSearchParams()
+
 	const handleClick = () => {
 		dropdownItem.current.classList.toggle('hidden')
 	}
 
 	const handleClickDropdownItem = (e) => {
-		updateDataValue('month', e.target.id)
+		const kodeBulan = parseInt(e.target.id)
+
+		const bulan =
+			kodeBulan < 9
+				? fullMonth[`0${kodeBulan + 1}`].toLowerCase()
+				: fullMonth[kodeBulan + 1].toLowerCase()
+
+		if (Number(kodeBulan) + 1 === 0) {
+			setSearchBulan({})
+			updateDataValue('month', String(kodeBulan))
+			return
+		}
+
+		setSearchBulan({ bulan })
+		updateDataValue('month', kodeBulan)
 	}
 
 	const handleWindowClick = (e) => {
@@ -29,6 +47,29 @@ const Dropdown = () => {
 			dropdownItem.current.classList.toggle('hidden')
 		}
 	}
+
+	useEffect(() => {
+		const bulan = searchBulan.get('bulan')
+
+		if (!bulan) {
+			return
+		}
+
+		for (const [key, value] of Object.entries(fullMonth)) {
+			if (value.toLowerCase() === bulan) {
+				setSearchBulan({ bulan })
+				updateDataValue('month', Number(key) - 1)
+			}
+		}
+	}, [searchBulan])
+
+	useEffect(() => {
+		const data = sort
+		updateDataValue('sort', 'none')
+		setTimeout(() => {
+			updateDataValue('sort', data)
+		}, 65)
+	}, [month])
 
 	useEffect(() => {
 		window.addEventListener('click', handleWindowClick)
@@ -65,6 +106,7 @@ const Dropdown = () => {
 				ref={dropdownItem}
 			>
 				{[
+					'Semua',
 					'Januari',
 					'Febuari',
 					'Maret',
@@ -83,7 +125,7 @@ const Dropdown = () => {
 							className='w-full py-1 px-4 text-placeholder-input bg-black/30 backdrop-blur-primary cursor-pointer hover:bg-hover-card-item'
 							key={i + 1}
 							onClick={handleClickDropdownItem}
-							id={i}
+							id={i - 1}
 						>
 							{menu}
 						</div>
