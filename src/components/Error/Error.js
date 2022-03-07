@@ -16,7 +16,7 @@ const Error = () => {
 					Page Not Found
 				</span>
 			</div>
-			<div className='small text-xl text-white/80 font-nunito mt-4'>
+			<div className='small text-center text-md md:text-xl text-white/80 font-nunito mt-4'>
 				Halaman yang anda cari tidak ditemukan
 			</div>
 			<button
