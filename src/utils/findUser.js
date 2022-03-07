@@ -8,6 +8,8 @@ export const findUsersByInput = (inputValue, usersData) => {
 export const findUserByBirthdayMonth = (dropdownValue, users) => {
 	const selectedMonth = Number(dropdownValue)
 
+	if (selectedMonth < 0) return users
+
 	return users.filter((user) => {
 		const [year, month, date] = user.date.split('-')
 		return Number(month) === selectedMonth + 1
