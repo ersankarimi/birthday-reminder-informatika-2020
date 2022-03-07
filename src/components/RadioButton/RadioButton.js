@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useMyContext } from '../../hooks/useMyContext'
 
 const RadioButton = () => {
@@ -11,6 +12,13 @@ const RadioButton = () => {
 	const handleChange = (e) => {
 		updateDataValue('sort', e.target.id)
 	}
+
+	useEffect(() => {
+		const radioButon = document.querySelectorAll('input[type=radio]')
+		radioButon.forEach((element) => {
+			if (element.id === sort) element.checked = true
+		})
+	}, [sort])
 
 	return (
 		<div className='radio' id='radio'>
