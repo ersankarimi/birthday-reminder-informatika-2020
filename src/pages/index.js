@@ -1,6 +1,6 @@
 import React from 'react'
-import { ContextProvider } from '../hooks/context'
-import { Header } from './../components/Header/Header'
+import { ContextProvider } from './../context/context'
+import { Header } from '../components/Header/Header'
 import { Form } from './Form'
 import { ListUsers } from './ListUsers'
 
